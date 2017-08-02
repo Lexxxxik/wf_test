@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.wf.ivankov</groupId>
+	<artifactId>pom</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>pom</name>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.6.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<modules>
+		<module>../Shop</module>
+		<module>../Stock</module>
+		<module>../Common</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyMMdd_HHmm</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<properties>
+				<isProduction>false</isProduction>
+				<logging.level>DEBUG</logging.level>
+				<rest.shopUrl>http://localhost:8081</rest.shopUrl>
+				<rest.stockUrl>http://localhost:8082</rest.stockUrl>
+				<some.property>testMe</some.property>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<isProduction>true</isProduction>
+				<logging.level>WARN</logging.level>
+				<rest.shopUrl>http://wf.by:8081</rest.shopUrl>
+				<rest.stockUrl>http://wf.by:8082</rest.stockUrl>
+				<some.property>testMe</some.property>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>${project.artifactId}_${project.version}_${timestamp}</finalName>
+	</build>
+</project>
