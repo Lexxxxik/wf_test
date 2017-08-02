@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0000000001
+      author: ivankov_a
+      preConditions:
+        - not:
+          - onFail: MARK_RAN
+          - tableExists:
+              tableName: ProductStock
+      changes:
+        - createTable:
+            tableName: ProductStock
+            columns:
+              - column:
+                  name: PRODUCT_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: QUANTITY
+                  type: int
+                  constraints:
+                    nullable: false
+                    
+        - createTable:
+            tableName: ProductReservation
+            columns:
+              - column:
+                  name: PRODUCT_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: USER_NAME
+                  type: varchar
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: QUANTITY
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: RESERVATION_DATE
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  
+                  

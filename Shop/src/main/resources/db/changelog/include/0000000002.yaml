@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0000000002
+      author: ivankov_a
+      changes:
+        - loadData:
+            tableName: Product
+            encoding: UTF-8
+            file: db/changelog/data/product.data
+            separator: ;
+            columns:
+              - column:
+                  name: NAME
+                  type: STRING
+              - column:
+                  name: COST
+                  type: NUMERIC
+
+        - loadData:
+            tableName: UserRole
+            encoding: UTF-8
+            file: db/changelog/data/userRole.data
+            separator: ;
+            columns:
+              - column:
+                  name: USER_NAME
+                  type: STRING
+              - column:
+                  name: USER_ROLE
+                  type: STRING                  

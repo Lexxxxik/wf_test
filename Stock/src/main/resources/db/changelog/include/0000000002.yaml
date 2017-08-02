@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0000000002
+      author: ivankov_a
+      changes:
+        - loadData:
+            tableName: ProductStock
+            encoding: UTF-8
+            file: db/changelog/data/ProductStock.data
+            separator: ;
+            columns:
+              - column:
+                  name: PRODUCT_ID
+                  type: NUMERIC
+              - column:
+                  name: QUANTITY
+                  type: NUMERIC
+                  

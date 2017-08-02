@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0000000001
+      author: ivankov_a
+      preConditions:
+        - not:
+          - onFail: MARK_RAN
+          - tableExists:
+              tableName: Product
+      changes:
+        - createTable:
+            tableName: Product
+            columns:
+              - column:
+                  name: ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(254)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: COST
+                  type: DECIMAL
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: UserRole
+            columns:
+              - column:
+                  name: USER_NAME
+                  type: varchar(50)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: USER_ROLE
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
